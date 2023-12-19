@@ -8,6 +8,8 @@ const apiKey = "7867288bff076c11ab0fe1c5a52166df"
 // For form
 const inputEl = document.getElementById('search-input');
 const submitEL = document.getElementById('search-button');
+const historyEl = document.getElementById('history-container')
+let searchArr =[];
 
 // For later use 
 let userSearch;
@@ -30,6 +32,9 @@ submitEL.addEventListener('click', (e) => {
 
     userSearch = inputEl.value;
     console.log(userSearch)
+
+    addToStorage(userSearch);
+    addToHistoryElement();
     createURL(userSearch);
     fetchData();
 });
@@ -95,3 +100,37 @@ function fetchData() {
     })
 }
 
+// Function that adds search to local storage
+function addToStorage(searchInput) {
+    searchArr.push(searchInput);
+    localStorage.setItem("History", JSON.stringify(searchArr));
+    console.log('local below')
+    console.log(localStorage)
+}
+
+
+// Function that appends search to search history element in HTML
+
+function addToHistoryElement() {
+    let historyArr = JSON.parse(localStorage.getItem("History"));
+    for (i = 0; i < historyArr.length; i++) {
+        // Appends city to search history
+        let cityEl = document.createElement('div');
+        cityEl.textContent = historyArr[i];
+        console.log(historyEl)
+        historyEl.appendChild(cityEl);
+
+        // Adds event listener to each city element
+        cityEl.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            createURL(cityEl.textContent);
+            fetchData();
+        })
+        
+    }
+}
+
+// Calling the function on page load
+
+addToHistoryElement();

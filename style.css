@@ -23,6 +23,8 @@ header h1 {
 
 .row {
     width: 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 #search-button {
@@ -59,3 +61,14 @@ header h1 {
 
 }
 
+#history-container {
+    height: 400px;
+    background-color: #e1f1fd;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#history-container div {
+    cursor: pointer;
+    margin-top: 5px;
+}
