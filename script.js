@@ -92,7 +92,7 @@ function fetchData() {
             weatherBox.appendChild(boxWind);
 
             let boxHumidity = document.createElement('p');
-            boxHumidity.textContent = 'Humidity ' + data.list[i].main.humidity;
+            boxHumidity.textContent = 'Humidity: ' + data.list[i].main.humidity;
             weatherBox.appendChild(boxHumidity);
 
             boxContainer.appendChild(weatherBox);
